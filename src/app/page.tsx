@@ -43,6 +43,7 @@ export default function Home() {
       console.log("tokenName ===>", tokenName);
       console.log("tokenSymbol ===>", tokenSymbol);
       await createSPLToken(wallet.publicKey, wallet, connection, tokenBalance, tokenDecimal, true, tokenName, tokenSymbol, "", "", _file, "string")
+      console.log("Mint token success");
     } else {
       console.log("invalid params");
       return;
@@ -62,7 +63,7 @@ export default function Home() {
     console.log("revoke mint :mint ===>", mint.toBase58())
     console.log("Transaction in progress");
     await revokeMintAuthority(connection, wallet, mint);
-    console.log("Success");
+    console.log("Successfully revoked mint authority");
   };
 
   const clickRevokeFreeze = async () => {
@@ -73,7 +74,7 @@ export default function Home() {
     console.log("revoke freeze: mint ==>", mint.toBase58());
     console.log("Transaction in progress");
     await revokeFreezeAuthority(connection, wallet, mint);
-    console.log("Success");
+    console.log("Successfully revoked freeze authority.");
   };
 
   const handleCreateMarket = async () => {
@@ -88,7 +89,7 @@ export default function Home() {
     const  madeMarketId = await createMarket(connection, wallet, mint, tokenDecimal, quoteMint, quoteDecimal, orderSize, tickSize);
     setMarketId(madeMarketId);
     console.log("Created market id ====>", madeMarketId?.toString());
-    console.log("Success");
+    console.log("Successfully created the market");
   };
 
   const clickAddLiquidity = async () => {
@@ -126,7 +127,7 @@ export default function Home() {
       parseFloat(solBalance)
     );
     console.log("LP mint successfully received", lpMint?.toString());
-    console.log("Success")
+    console.log("Successfully added liquidity")
   };
   const handleNameChange = (value: string) => {
     setTokenName(value);
@@ -266,7 +267,7 @@ export default function Home() {
             <p>Token amount</p>
             <input
             onChange={(e) => setTokenToPut(Number(e.target.value))}
-            value={tokenSymbol}
+            value={tokenToPut}
           />
           </div>
           </div>
