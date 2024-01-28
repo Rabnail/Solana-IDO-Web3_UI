@@ -3,13 +3,16 @@
 import { FC } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { ArrowLine, ExitIcon, WalletIcon } from "./SvgIcon";
+import { ArrowLine, ExitIcon, WalletIcon, WhiteWalletIcon } from "./SvgIcon";
 
-const ConnectButton: FC = () => {
+interface Props {
+  showSideBar?: boolean;
+}
+const ConnectButton: FC<Props> = ({ showSideBar }) => {
   const { setVisible } = useWalletModal();
   const { publicKey, disconnect } = useWallet();
   return (
-    <button className="rounded-lg border-[0.75px] border-primary-300 bg-primary-200 shadow-btn-inner text-primary-100 tracking-[0.32px] py-2 px-2 w-[140px] lg:w-[180px] group relative">
+    <button className="rounded-xl bg-primary-200 text-[white] tracking-[0.32px] py-2 px-4 group relative">
       {publicKey ? (
         <>
           <div className="flex items-center justify-center text-[12px] lg:text-[16px]">
@@ -23,7 +26,7 @@ const ConnectButton: FC = () => {
             <ul className="border-[0.75px] border-[#89C7B5] rounded-lg bg-[#162923] p-2 mt-2">
               <li>
                 <button
-                  className="flex gap-2 items-center text-primary-100 tracking-[-0.32px]"
+                  className="flex gap-2 items-center text-[white] tracking-[-0.32px]"
                   onClick={() => setVisible(true)}
                 >
                   <WalletIcon /> Change Wallet
@@ -31,7 +34,7 @@ const ConnectButton: FC = () => {
               </li>
               <li>
                 <button
-                  className="flex gap-2 items-center text-primary-100 tracking-[-0.32px]"
+                  className="flex gap-2 items-center text-[white] tracking-[-0.32px]"
                   onClick={disconnect}
                 >
                   <ExitIcon /> Disconnect
@@ -45,11 +48,20 @@ const ConnectButton: FC = () => {
           className="flex items-center justify-center gap-1 text-[12px] lg:text-[16px]"
           onClick={() => setVisible(true)}
         >
-          Connect wallet <ArrowLine />
+          <WhiteWalletIcon />{" "}
+          {showSideBar ? (
+            <span className="">Connect Wallet</span>
+          ) : (
+            <div>
+              <span className="hidden md:inline">Connect Wallet</span>
+              <span className="md:hidden">Connect</span>
+            </div>
+          )}
         </div>
-      )}
+      )
+      }
       {/* <div className=""></div> */}
-    </button>
+    </button >
   );
 };
 

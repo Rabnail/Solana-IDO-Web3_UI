@@ -51,23 +51,3 @@ main {
 .force-h {
   min-height: 100% !important;
 }
-button {
-  background-color: #69f3;
-  border-radius: 5px;
-  border: 1px solid #0009;
-  padding: 3px 10px
-}
-/* div {
-  padding: 2px 0 20px 2px;
-} */
-input {
-  background-color: #69f2;
-  
-}
-.unit-box {
-  border: 1px solid #4444;
-  padding: 20px;
-}
-div {
-  padding: 2px;
-}

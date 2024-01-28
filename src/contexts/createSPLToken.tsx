@@ -31,7 +31,6 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
             }));
 
         const mint_rent = await Token.getMinBalanceRentForExemptMint(connection);
-        // Token.createSetAuthorityInstruction()
 
         const mint_account = Keypair.generate();
 
@@ -153,7 +152,6 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
                 quantity * 10 ** decimals
             );
 
-
             const MetadataInstruction = createCreateMetadataAccountV3Instruction(
                 {
                     metadata: metadataPDA,
@@ -166,7 +164,6 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
                     createMetadataAccountArgsV3: args,
                 }
             );
-
             console.log("confirming");
             if (wallet.publicKey == null) return;
             const createAccountTransaction = new Transaction().add(createMintAccountInstruction, InitMint, createATAInstruction, mintInstruction, MetadataInstruction);
@@ -186,11 +183,9 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
             // return mint_account.publicKey;
             const createAccountconfirmed = await connection.confirmTransaction(createAccountSignature, 'confirmed');
             if (createAccountconfirmed)
-                return mint_account.publicKey;
+                return { mint: mint_account.publicKey, signature: createAccountSignature };
             return undefined;
             // const signature = createAccountSignature.toString()
-
-
             // if (createAccountconfirmed) {
             //     console.log("confirmed: ", signature);
             //     return mint_account.publicKey;
@@ -203,9 +198,6 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
 
     } catch (error) {
         console.log("error: ", error);
-        // setIscreating(false);
-        // const err = (error as any)?.message;
-        // setError(err)
     }
 
 }

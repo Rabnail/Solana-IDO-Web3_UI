@@ -5,7 +5,6 @@ import { MarketV2, DEVNET_PROGRAM_ID, TxVersion, MAINNET_PROGRAM_ID, TokenAccoun
 
 const marketProgramId = DEVNET_PROGRAM_ID.OPENBOOK_MARKET;
 // const marketProgramId = MAINNET_PROGRAM_ID.OPENBOOK_MARKET;
-
 // mainnet created market Id : 'F9KzEFGJECyabR8EanVdkiVZXs7FLosfQixBqpVCg7p1'
 
 export async function createMarket(
@@ -19,11 +18,11 @@ export async function createMarket(
     tickSize: number
 ) {
     console.log("devnet : marketProgramId ====>", marketProgramId.toBase58());
-    console.log("mainnet : marketProgramId ====>", DEVNET_PROGRAM_ID.OPENBOOK_MARKET.toBase58());
+    console.log("devnet : marketProgramId ====>", DEVNET_PROGRAM_ID.OPENBOOK_MARKET.toBase58());
     let marketId: PublicKey | null = null;
     if (wallet.publicKey != null) {
         try {
-            console.log("start");
+            console.log("hello!!!");
             const { innerTransactions, address } = await MarketV2.makeCreateMarketInstructionSimple({
                 connection,
                 wallet: wallet.publicKey,
@@ -64,7 +63,6 @@ export async function createMarket(
                         marketId = null;
                     }
                 }
-
             }
         } catch (err) {
             console.log("err ===>", err);

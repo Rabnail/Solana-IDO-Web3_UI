@@ -1,10 +1,9 @@
-import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID, MintLayout, Token } from '@solana/spl-token';
-import { Connection, PublicKey, Transaction, SystemProgram, Keypair, TransactionInstruction } from '@solana/web3.js';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Connection, PublicKey, Transaction } from '@solana/web3.js';
 import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Liquidity, TokenAccount, MAINNET_PROGRAM_ID, SPL_ACCOUNT_LAYOUT, TxVersion, ComputeBudgetConfig, DEVNET_PROGRAM_ID } from '@raydium-io/raydium-sdk';
+import { Liquidity, TokenAccount, SPL_ACCOUNT_LAYOUT, TxVersion, ComputeBudgetConfig, DEVNET_PROGRAM_ID } from '@raydium-io/raydium-sdk';
 import { BN } from '@project-serum/anchor';
 
-// const raydiumProgram = MAINNET_PROGRAM_ID;
 const raydiumProgram = DEVNET_PROGRAM_ID;
 
 export async function createLiquidity(
@@ -67,9 +66,8 @@ export async function createLiquidity(
                 computeBudgetConfig: budget,
                 checkCreateATAOwner: true,
                 makeTxVersion: TxVersion.LEGACY,
-                // feeDestinationId: new PublicKey("7YttLkHDoNj9wyDur5pM1ejNaAvT9X4eqaYcHQqtj2G5")      //for mainnet id
-                feeDestinationId: new PublicKey("3XMrhbv989VxAMi3DErLV9eJht1pHppW5LbKxe9fkEFR")      //for devnet
-                // feeDestinationId: new PublicKey("34vTq3GQxK6pgEbhnrgU1zs27gPWS6ZttxrYofDR4EkD")
+                feeDestinationId: new PublicKey("3XMrhbv989VxAMi3DErLV9eJht1pHppW5LbKxe9fkEFR")      // it's for devnet
+                // feeDestinationId: new PublicKey("7YttLkHDoNj9wyDur5pM1ejNaAvT9X4eqaYcHQqtj2G5")   // it's for mainnet Id
             });
             console.log("innter transactions ===>", innerTransactions);
             // console.log('address ===>', address);
@@ -90,10 +88,10 @@ export async function createLiquidity(
                     try {
                         transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
                         transaction.feePayer = wallet.publicKey;
-                        console.log(await connection.simulateTransaction(transaction));
-
+                        console.log("this is the error part   x x x x x x x x =>", await connection.simulateTransaction(transaction));
+                        
                         let signedTx = await wallet.signTransaction(transaction);
-                        // console.log("simulateion ++++++++  ",await connection.simulateTransaction(signedTx));
+                        console.log("this is the error part   x x x x x x x x =>", await connection.simulateTransaction(transaction));
 
                         const signature = await connection.sendRawTransaction(signedTx.serialize());
                         console.log("signature ====>", signature);
@@ -105,7 +103,6 @@ export async function createLiquidity(
         } catch (err) {
             console.log("creating liquidity ===>", err);
         }
-        // alert("123");
         return lpMint;
     }
 }
