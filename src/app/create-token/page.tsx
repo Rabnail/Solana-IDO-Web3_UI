@@ -520,12 +520,12 @@ export default function Home() {
                             </div>
                         </div>
                         <div className='flex items-center justify-between'>
-                            <div className='text-secondary-400 text-sm font-normal'>
+                            {/* <div className='text-secondary-400 text-sm font-normal'>
                                 Create Market Fee
                             </div>
                             <div className='text-stone-800 font-semibold text-sm'>
                                 2.7 Sol
-                            </div>
+                            </div> */}
                         </div>
                         <button
                             className="w-full py-3 px-6 text-[white] text-sm font-semibold text-center rounded-xl bg-primary-200"

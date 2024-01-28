@@ -26,7 +26,7 @@ export default function Home() {
   const wallet = useWallet()
   const { connection } = useConnection()
   const router = useRouter();
-  const [mintAddress, setMintAddress] = useState<PublicKey | undefined>(undefined);
+  const [mintAddress, setMintAddress] = useState<PublicKey | undefined>(new PublicKey('NEuxmguQittzmrMMyiEDBZFwPPWHGimJKzH7CKekato'));
   const [tokenName, setTokenName] = useState("")
   const [tokenSymbol, setTokenSymbol] = useState("")
   const [tokenLogo, setTokenLogo] = useState<File | null>()
@@ -40,7 +40,7 @@ export default function Home() {
       severity: undefined,
   })
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
 
   const handleCreateToken = async () => {
       if (
@@ -383,7 +383,7 @@ export default function Home() {
           }
           {
               step == 2 && (
-                  <div className="flex flex-col max-w-[480px] w-full bg-sky-200 rounded-xl p-6 gap-8">
+                  <div className="flex flex-col max-w-[480px] w-full bg-sky-200 rounded-xl p-6 gap-8 mb-10">
                       <div className='flex items-center justify-center'>
                           <div className='text-stone-800 text-2xl font-semibold'>
                               Revoke Mint Authority
@@ -520,12 +520,12 @@ export default function Home() {
                           </div>
                       </div>
                       <div className='flex items-center justify-between'>
-                          <div className='text-secondary-400 text-sm font-normal'>
+                          {/* <div className='text-secondary-400 text-sm font-normal'>
                               Create Market Fee
                           </div>
                           <div className='text-stone-800 font-semibold text-sm'>
                               2.7 Sol
-                          </div>
+                          </div> */}
                       </div>
                       <button
                           className="w-full py-3 px-6 text-[white] text-sm font-semibold text-center rounded-xl bg-primary-200"
@@ -600,20 +600,17 @@ export default function Home() {
           }
           
           <div  className="inline-flex">
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l" onClick={() => setStep(1)}>
-                  1
+              {/* <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l m-3" onClick={() => setStep(2)}>
+                  Revoke Mint
               </button>
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l" onClick={() => setStep(2)}>
-                  2
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l m-3" onClick={() => setStep(3)}>
+                  Revoke Freeze
+              </button> */}
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l m-3" onClick={() => setStep(4)}>
+                  Create Market
               </button>
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l" onClick={() => setStep(3)}>
-                  3
-              </button>
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l" onClick={() => setStep(4)}>
-                  4
-              </button>
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l" onClick={() => setStep(5)}>
-                  5
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-l m-3" onClick={() => setStep(5)}>
+                  Add Liquidity
               </button>
           </div>
           <Snackbar
