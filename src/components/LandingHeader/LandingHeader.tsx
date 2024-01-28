@@ -25,14 +25,14 @@ export default function LandingHeader() {
                     </Link>
                     <div className='hidden md:flex text-xs lg:text-sm xl:text-base items-center text-[white] font-semibold'>
                         <Link href='/create-token' className={` ${pathName == '/create-token' && 'text-primary-200'} py-2 px-2 xl:px-4 hover:text-primary-200`}>
-                            Create Token
+                            Manage Token & Create LP
                         </Link>
-                        <Link href='/my-token' className={` ${pathName == '/my-token' && 'text-primary-200'} py-2 px-2 xl:px-4 hover:text-primary-200`}>
+                        {/* <Link href='/my-token' className={` ${pathName == '/my-token' && 'text-primary-200'} py-2 px-2 xl:px-4 hover:text-primary-200`}>
                             My Tokens
                         </Link>
                         <Link href='/' className={` ${pathName == '/' && 'text-primary-200'} py-2 px-2 xl:px-4 hover:text-primary-200`}>
                             Main Page
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className='flex items-center gap-2 lg:gap-4'>
                         <ConnectButton />
