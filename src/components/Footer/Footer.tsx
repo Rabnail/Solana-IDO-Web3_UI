@@ -8,11 +8,7 @@ export default function Footer() {
                 <div className='w-full max-w-[1440px] flex flex-col gap-6 custom-lg:gap-0 custom-lg:flex-row items-center custom-lg:justify-between text-stone-800 font-semibold'>
                     <div className='flex flex-col'>
                         <div className='flex justify-start'>
-                            <img
-                                src='/icons/logo_big.png'
-                                alt='logo'
-                                className='h-[100px] mb-4 float-left object-fill'
-                            />
+                            Logo here
                         </div>
                         <div className='text-secondary-400 text-xl mb-8'>
                             CREATE YOUR <b>TOKEN</b><br /> AND MAKE YOUR NEW <b>FORTUNE</b>
